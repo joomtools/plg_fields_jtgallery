@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<field name="s"
+	       type="integer"
+	       default="1"
+	       first="0"
+	       last="5"
+	       step="1"
+	       label="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_S_LABEL"
+	       description="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_S_DESC"
+	/>
+	<field name="m"
+	       type="integer"
+	       default="0"
+	       first="0"
+	       last="5"
+	       step="1"
+	       label="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_M_LABEL"
+	       description="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_M_DESC"
+	/>
+	<field name="l"
+	       type="integer"
+	       default="0"
+	       first="0"
+	       last="5"
+	       step="1"
+	       label="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_L_LABEL"
+	       description="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_L_DESC"
+	/>
+	<field name="xl"
+	       type="integer"
+	       default="0"
+	       first="0"
+	       last="5"
+	       step="1"
+	       label="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_XL_LABEL"
+	       description="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_XL_DESC"
+	/>
+</form>

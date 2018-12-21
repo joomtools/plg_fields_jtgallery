@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<extension type="plugin" version="3.9.0" group="fields" method="upgrade">
+	<name>plg_fields_gallery</name>
+	<author>Guido de Gobbis, Barbara Aßmann</author>
+	<creationDate>November 2018</creationDate>
+	<copyright>Copyright (C) Guido De Gobbis, Barbara Aßmann. All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<authorEmail>info@webnet-assmann.de</authorEmail>
+	<authorUrl>www.webnet-assmann.de</authorUrl>
+	<version>1.0-alpha4</version>
+	<description>PLG_FIELDS_GALLERY_DESC</description>
+	<files>
+		<filename plugin="gallery">gallery.php</filename>
+		<folder>language</folder>
+		<folder>field</folder>
+		<folder>tmpl</folder>
+	</files>
+	<updateservers>
+		<server type="extension" priority="1" name="PLG_FIELDS_GALLERY">https://raw.githubusercontent.com/webnet-assmann/gallery-custom-field/master/update.xml</server>
+	</updateservers>
+</extension>
