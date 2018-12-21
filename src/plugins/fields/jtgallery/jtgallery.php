@@ -18,7 +18,7 @@ JLoader::import('components.com_fields.libraries.fieldsplugin', JPATH_ADMINISTRA
  *
  * @since  1.0
  */
-class PlgFieldsGallery extends FieldsPlugin
+class PlgFieldsJtgallery extends FieldsPlugin
 {
 	/**
 	 * @var   string

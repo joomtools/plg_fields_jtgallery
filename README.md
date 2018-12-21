@@ -1,2 +1,2 @@
-# gallery-custom-field
-Joomla! CustomField - Displays jpg-images from a folder within a gallery and lightbox
+# JT - Gallery
+Joomla! CustomField - Displays images from a folder within a gallery and lightbox

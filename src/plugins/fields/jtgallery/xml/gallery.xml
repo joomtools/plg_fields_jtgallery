@@ -3,14 +3,14 @@
 	<field name="container_class"
 	       type="textarea"
 	       rows="5"
-	       label="PLG_FIELDS_GALLERY_PARAMS_CONTAINER_CLASS_SUFFIX_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_CONTAINER_CLASS_SUFFIX_DESC"
+	       label="JTGALLERY_PARAMS_CONTAINER_CLASS_SUFFIX_LABEL"
+	       description="JTGALLERY_PARAMS_CONTAINER_CLASS_SUFFIX_DESC"
 	/>
 
 	<field name="layout"
 	       type="list"
-	       label="PLG_FIELDS_GALLERY_PARAMS_LAYOUT_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_LAYOUT_DESC"
+	       label="JTGALLERY_PARAMS_LAYOUT_LABEL"
+	       description="JTGALLERY_PARAMS_LAYOUT_DESC"
 	>
 		<option value="">JDEFAULT</option>
 		<option value="uikit2">UIkit2</option>
@@ -20,8 +20,8 @@
 	       type="radio"
 	       default="1"
 	       class="btn-group btn-group-yesno"
-	       label="PLG_FIELDS_GALLERY_PARAMS_UIKIT2_LIGHTBOX_JS_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_UIKIT2_LIGHTBOX_JS_DESC"
+	       label="JTGALLERY_PARAMS_UIKIT2_LIGHTBOX_JS_LABEL"
+	       description="JTGALLERY_PARAMS_UIKIT2_LIGHTBOX_JS_DESC"
 	       showon="layout:uikit2"
 	>
 		<option value="0">JNO</option>
@@ -32,15 +32,15 @@
 	       type="subform"
 	       formsource="plugins/fields/gallery/xml/items_x_line.xml"
 	       min="1"
-	       label="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_ITEMS_X_LINE_DESC"
+	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
+	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_DESC"
 	/>
 
 	<field name="thumbnail_width"
 		   type="text"
 		   default="480"
 		   maxlength="10"
-		   label="PLG_FIELDS_GALLERY_THUMBNAIL_WIDTH_LABEL"
+		   label="JTGALLERY_THUMBNAIL_WIDTH_LABEL"
 		   description="PLG_FIELDS_THUMBNAIL_WIDTH_DESC"
 	/>
 
@@ -48,18 +48,18 @@
 		   type="text"
 		   default="360"
 		   maxlength="10"
-		   label="PLG_FIELDS_GALLERY_THUMBNAIL_HEIGHT_LABEL"
+		   label="JTGALLERY_THUMBNAIL_HEIGHT_LABEL"
 		   description="PLG_FIELDS_THUMBNAIL_HEIGHT_DESC"
 	/>
 
 	<field name="single_folder"
 	       type="radio"
 	       default="folder"
-	       label="PLG_FIELDS_GALLERY_PARAMS_SINGLE_FOLDER_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_SINGLE_FOLDER_DESC"
+	       label="JTGALLERY_PARAMS_SINGLE_FOLDER_LABEL"
+	       description="JTGALLERY_PARAMS_SINGLE_FOLDER_DESC"
 	>
-		<option value="single">PLG_FIELDS_GALLERY_PARAMS_SINGLE_FOLDER_OPTION_SINGLE_LABEL</option>
-		<option value="folder">PLG_FIELDS_GALLERY_PARAMS_SINGLE_FOLDER_OPTION_FOLDER_LABEL</option>
+		<option value="single">JTGALLERY_PARAMS_SINGLE_FOLDER_OPTION_SINGLE_LABEL</option>
+		<option value="folder">JTGALLERY_PARAMS_SINGLE_FOLDER_OPTION_FOLDER_LABEL</option>
 	</field>
 
 	<field name="directory"
@@ -68,8 +68,8 @@
 	       hide_none="true"
 	       hide_default="true"
 	       recursive="true"
-	       label="PLG_FIELDS_GALLERY_PARAMS_DIRECTORY_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_DIRECTORY_DESC"
+	       label="JTGALLERY_PARAMS_DIRECTORY_LABEL"
+	       description="JTGALLERY_PARAMS_DIRECTORY_DESC"
 	       showon="single_folder:folder"
 	>
 		<option value="/">COM_FIELDS_FIELD_USE_GLOBAL</option>
@@ -79,8 +79,8 @@
 	       type="radio"
 	       default="caption"
 	       class="btn-group"
-	       label="PLG_FIELDS_GALLERY_PARAMS_CAPTION_OVERLAY_LABEL"
-	       description="PLG_FIELDS_GALLERY_PARAMS_CAPTION_OVERLAY_DESC"
+	       label="JTGALLERY_PARAMS_CAPTION_OVERLAY_LABEL"
+	       description="JTGALLERY_PARAMS_CAPTION_OVERLAY_DESC"
 	       showon="single_folder:single"
 	>
 		<option value="0">JOFF</option>
@@ -93,8 +93,8 @@
 	       formsource="plugins/fields/gallery/xml/single_picture.xml"
 	       multiple="true"
 	       min="1"
-	       label="PLG_FIELDS_GALLERY_SINGLE_PICTURE_LABEL"
-	       description="PLG_FIELDS_GALLERY_SINGLE_PICTURE_DESC"
+	       label="JTGALLERY_SINGLE_PICTURE_LABEL"
+	       description="JTGALLERY_SINGLE_PICTURE_DESC"
 	       showon="single_folder:single"
 	/>
 </form>
