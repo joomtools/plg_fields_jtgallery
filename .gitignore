@@ -29,6 +29,7 @@ Desktop.ini
 *.swp
 *~.nib
 *~
+baguetteBox.js.zip
 
 # Phing
 build.properties
