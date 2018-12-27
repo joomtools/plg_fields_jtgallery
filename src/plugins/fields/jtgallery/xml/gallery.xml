@@ -30,7 +30,7 @@
 
 	<field name="items_x_line"
 	       type="subform"
-	       formsource="plugins/fields/gallery/xml/items_x_line.xml"
+	       formsource="plugins/fields/jtgallery/xml/items_x_line.xml"
 	       min="1"
 	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
 	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_DESC"
@@ -90,7 +90,7 @@
 
 	<field name="single_pictures"
 	       type="subform"
-	       formsource="plugins/fields/gallery/xml/single_picture.xml"
+	       formsource="plugins/fields/jtgallery/xml/single_picture.xml"
 	       multiple="true"
 	       min="1"
 	       label="JTGALLERY_SINGLE_PICTURE_LABEL"
