@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Layout\FileLayout;
-use Joomla\CMS\Uri\Uri;
 
 if (!$field->value
 	|| $field->value == '-1'
@@ -63,12 +62,13 @@ $displayData = array(
 	'itemsXline'     => $params->items_x_line,
 );
 
-$lightboxPath = '/templates/' . $theme. '/warp/vendor/uikit/js/components/lightbox.js';
+JHtml::_('stylesheet', 'plg_fields_jtgallery/baguetteBox.min.css', array('version' => 'auto', 'relative' => true));
+JHtml::_('script', 'plg_fields_jtgallery/baguetteBox.min.js', array('version' => 'auto', 'relative' => true));
 
-if (file_exists(JPATH_ROOT . $lightboxPath) && $frwk == 'uikit2' && $params->uikit2_lightbox_js == "0") : ?>
-	<script src="<?php echo Uri::base(true) . $lightboxPath; ?>"></script>
-<?php endif; ?>
+PlgFieldsJtgalleryHelper::initJs();
 
-<div class="gallery_container<?php echo $class; ?>">
+?>
+
+<div class="jtgallery_container <?php echo $class; ?>">
 	<?php echo $renderer->render($displayData); ?>
 </div>

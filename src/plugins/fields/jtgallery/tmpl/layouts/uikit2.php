@@ -25,7 +25,7 @@ extract($displayData);
  */
 
 $linkAttr = array();
-$linkAttr['data-uk-lightbox'] = '{group:\'' . md5(json_encode($images)) . '\'}';
+//$linkAttr['data-uk-lightbox'] = '{group:\'' . md5(json_encode($images)) . '\'}';
 
 $sublayout       = 'default';
 $imgWidth        = array();
@@ -68,7 +68,7 @@ $imgWidth = implode(' ', $imgWidth); ?>
 
 			if (!empty($imgObject->title))
 			{
-				$linkAttr['data-title']    = $imgObject->title;
+				$linkAttr['data-caption']    = $imgObject->title;
 				$imgData['title']          = $imgObject->title;
 				$imgData['titleContainer'] = $image->title_container;
 
@@ -79,7 +79,7 @@ $imgWidth = implode(' ', $imgWidth); ?>
 			}
 			else
 			{
-				$linkAttr['data-title'] = $imgData['alt'];
+				$linkAttr['data-caption'] = $imgData['alt'];
 			}
 
 			$img = $this->sublayout($sublayout, $imgData);

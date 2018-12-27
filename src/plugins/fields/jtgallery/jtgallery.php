@@ -17,14 +17,14 @@ JLoader::register('PlgFieldsJtgalleryHelper', __DIR__ . '/helper.php');
 /**
  * Fields Imagelist Plugin
  *
- * @since  1.0
+ * @since  1.0.0
  */
 class PlgFieldsJtgallery extends FieldsPlugin
 {
 	/**
 	 * @var   string
 	 *
-	 * @since   1.0
+	 * @since   1.0.0
 	 */
 	private $context;
 

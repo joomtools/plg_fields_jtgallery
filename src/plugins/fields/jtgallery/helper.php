@@ -20,6 +20,13 @@ use Joomla\Filesystem\File;
 class PlgFieldsJtgalleryHelper
 {
 	/**
+	 * @var   bool
+	 *
+	 * @since   1.0.0
+	 */
+	public static $runJs = false;
+
+	/**
 	 * @param   string        $imagesPath
 	 * @param   array|object  $image
 	 *
@@ -64,5 +71,22 @@ class PlgFieldsJtgalleryHelper
 		}
 
 		return $imgObject;
+	}
+
+	public static function initJs()
+	{
+		if (self::$runJs === false)
+		{
+			$js ="window.onload = function() {\n";
+			$js .="\tbaguetteBox.run('.jtgallery_container', {\n";
+			$js .="\t\tanimation: 'fadeIn',\n";
+			$js .="\t\tnoScrollbars: true\n";
+			$js .="\t});\n";
+			$js .="};\n";
+
+			JFactory::getDocument()->addScriptDeclaration($js);
+
+			self::$runJs = true;
+		}
 	}
 }
