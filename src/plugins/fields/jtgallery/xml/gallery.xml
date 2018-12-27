@@ -41,7 +41,7 @@
 		   default="480"
 		   maxlength="10"
 		   label="JTGALLERY_THUMBNAIL_WIDTH_LABEL"
-		   description="PLG_FIELDS_THUMBNAIL_WIDTH_DESC"
+		   description="JTGALLERY_THUMBNAIL_WIDTH_DESC"
 	/>
 
 	<field name="thumbnail_height"
@@ -49,7 +49,7 @@
 		   default="360"
 		   maxlength="10"
 		   label="JTGALLERY_THUMBNAIL_HEIGHT_LABEL"
-		   description="PLG_FIELDS_THUMBNAIL_HEIGHT_DESC"
+		   description="JTGALLERY_THUMBNAIL_HEIGHT_DESC"
 	/>
 
 	<field name="single_folder"
