@@ -11,8 +11,16 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 
-extract($displayData); ?>
+extract($displayData);
 
+/**
+* Layout variables
+* ---------------------
+* @var   string  $thumb    Url to the thumbnail of the image.
+* @var   string  $alt      Alternate text of image.
+* @var   array   $attribs  Attributes of image or empty.
+*/
+?>
 <figure class="uk-thumbnail">
-	<?php echo HTMLHelper::_('image', $thumb, $alt, false); ?>
+	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
 </figure>

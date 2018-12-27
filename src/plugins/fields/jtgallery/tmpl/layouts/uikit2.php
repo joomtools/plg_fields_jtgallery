@@ -10,13 +10,25 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Uri\Uri;
 use Joomla\Filesystem\File;
 
 extract($displayData);
 
+/**
+ * Layout variables
+ * ---------------------
+ * @var   array   $images          All selected images or all images inside of selected folder.
+ * @var   string  $imagesPath      Absolute path of images if folder is selected.
+ * @var   string  $imageLayout     Layout for image output.
+ * @var   string  $thumbCachePath  Absolute path for thumbnails or responsive images.
+ * @var   array   $itemsXline      Items x line selected for responive views.
+ */
+
 $sublayout = 'default';
 $imgWidth  = array();
 $imgData   = array();
+$attribs   = array();
 
 $linkAttr['data-uk-lightbox'] = '{group:\'' . md5(json_encode($images)) . '\'}';
 //$linkAttr['class'] = 'uk-thumbnail';
@@ -45,16 +57,28 @@ $imgWidth = implode(' ', $imgWidth); ?>
 
 			if ($imagesPath === false)
 			{
-				$imgPath          = $image->picture;
-				$fileName         = explode('/', str_replace(array('\\\\', '\\'), '/', $imgPath));
-				$imgData['thumb'] = $thumbCachePath . '/' . array_pop($fileName);
-				$imgData['alt']   = trim(strip_tags($image->picture_alt));
-				$imgData['title'] = trim(strip_tags($image->picture_title));
+				$fileName             = explode('/', str_replace(array('\\\\', '\\'), '/', $image->picture));
+				$fileName             = array_pop($fileName);
+				$imgAbsPath           = JPATH_SITE . '/' . $image->picture;
+				$imgAbsCachePath      = $thumbCachePath . '/' . $fileName;
+				$imgPath              = Uri::base(true) . '/' . $image->picture;
+				$imgData['thumb']     = Uri::base(true) . str_replace(JPATH_SITE, '', $thumbCachePath);
+				$image->picture_alt   = trim(strip_tags($image->picture_alt));
+				$image->picture_title = trim(strip_tags($image->picture_title));
+				$imgData['title']     = '';
 
-				$linkAttr['data-title'] = $imgData['alt'];
-
-				if (!empty($imgData['title']))
+				if (!empty($image->picture_alt))
 				{
+					$imgData['alt']   = $image->picture_alt;
+				}
+				else
+				{
+					$imgData['alt'] = str_replace(array('-', '_'), " ", File::stripExt($fileName));
+				}
+
+				if (!empty($image->picture_title))
+				{
+					$imgData['title']          = $image->picture_title;
 					$linkAttr['data-title']    = $imgData['title'];
 					$imgData['titleContainer'] = $image->title_container;
 
@@ -63,20 +87,28 @@ $imgWidth = implode(' ', $imgWidth); ?>
 						$sublayout = $imageLayout;
 					}
 				}
+				else
+				{
+					$linkAttr['data-title'] = $imgData['alt'];
+				}
 			}
 			else
 			{
-				$imgPath                = $imagesPath . '/' . $image;
-				$imgData['thumb']       = $thumbCachePath . '/' . $image;
+				$imgPath                = Uri::base(true) . '/' . $imagesPath . '/' . $image;
+				$imgAbsPath             = JPATH_SITE . '/' . $imagesPath . '/' . $image;
+				$imgAbsCachePath        = $thumbCachePath . '/' . $image;
+				$imgData['thumb']       = Uri::base(true) . str_replace(JPATH_SITE, '', $thumbCachePath) . '/' . $image;
 				$imgData['alt']         = str_replace(array('-', '_'), " ", strip_tags(File::stripExt($image)));
 				$linkAttr['data-title'] = $imgData['alt'];
 			}
 
-			if (!file_exists($imgData['thumb']))
+			if (!file_exists($imgAbsCachePath))
 			{
 				// Todo: Prüfung auf Thumbnail, ggf. erstellen auf feste Größe von 480px (crop)
 				$imgData['thumb'] = $imgPath;
 			}
+
+			$imgData['attribs'] = $attribs;
 
 			$img = $this->sublayout($sublayout, $imgData);
 

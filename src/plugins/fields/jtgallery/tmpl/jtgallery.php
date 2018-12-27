@@ -13,7 +13,10 @@ use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Layout\FileLayout;
 use Joomla\CMS\Uri\Uri;
 
-if (!$field->value || $field->value == '-1' || !in_array($context, array('com_content.article', 'com_content.category')))
+if (!$field->value
+	|| $field->value == '-1'
+	|| !in_array($context, array('com_content.article', 'com_content.category'))
+	|| empty($item->asset_id))
 {
 	return;
 }
@@ -39,10 +42,13 @@ $renderer->addIncludePath($themeOverridePath);
 
 if ($params->single_folder == 'folder')
 {
+	$imagesPath = $params->directory === '/'
+		? 'images'
+		: 'images/' . $params->directory;
+
 	// read the .jpg from the selected directory
-	$filter     = '(\.png|\.jpg|\.jpeg)';
-	$imagesPath = 'images/' . $params->directory;
-	$images     = Folder::files($imagesPath, $filter);
+	$filter = '(\.png|\.jpg|\.jpeg)';
+	$images = Folder::files(JPATH_SITE . '/' . $imagesPath, $filter);
 }
 else
 {
