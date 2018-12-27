@@ -12,6 +12,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 JLoader::import('components.com_fields.libraries.fieldsplugin', JPATH_ADMINISTRATOR);
+JLoader::register('PlgFieldsJtgalleryHelper', __DIR__ . '/helper.php');
 
 /**
  * Fields Imagelist Plugin

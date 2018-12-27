@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Uri\Uri;
-use Joomla\Filesystem\File;
 
 extract($displayData);
 
@@ -25,13 +24,15 @@ extract($displayData);
  * @var   array   $itemsXline      Items x line selected for responive views.
  */
 
-$sublayout = 'default';
-$imgWidth  = array();
-$imgData   = array();
-$attribs   = array();
-
+$linkAttr = array();
 $linkAttr['data-uk-lightbox'] = '{group:\'' . md5(json_encode($images)) . '\'}';
-//$linkAttr['class'] = 'uk-thumbnail';
+
+$sublayout       = 'default';
+$imgWidth        = array();
+$attribs         = array();
+
+$imgData = array();
+$imgData['attribs'] = $attribs;
 
 $responsiveGrids = array(
 	'xl' => '-xlarge',
@@ -54,65 +55,36 @@ $imgWidth = implode(' ', $imgWidth); ?>
 	<?php foreach ($images as $image) : ?>
 		<div class="<?php echo $imgWidth; ?>">
 			<?php
-
-			if ($imagesPath === false)
-			{
-				$fileName             = explode('/', str_replace(array('\\\\', '\\'), '/', $image->picture));
-				$fileName             = array_pop($fileName);
-				$imgAbsPath           = JPATH_SITE . '/' . $image->picture;
-				$imgAbsCachePath      = $thumbCachePath . '/' . $fileName;
-				$imgPath              = Uri::base(true) . '/' . $image->picture;
-				$imgData['thumb']     = Uri::base(true) . str_replace(JPATH_SITE, '', $thumbCachePath);
-				$image->picture_alt   = trim(strip_tags($image->picture_alt));
-				$image->picture_title = trim(strip_tags($image->picture_title));
-				$imgData['title']     = '';
-
-				if (!empty($image->picture_alt))
-				{
-					$imgData['alt']   = $image->picture_alt;
-				}
-				else
-				{
-					$imgData['alt'] = str_replace(array('-', '_'), " ", File::stripExt($fileName));
-				}
-
-				if (!empty($image->picture_title))
-				{
-					$imgData['title']          = $image->picture_title;
-					$linkAttr['data-title']    = $imgData['title'];
-					$imgData['titleContainer'] = $image->title_container;
-
-					if ($imageLayout != '0')
-					{
-						$sublayout = $imageLayout;
-					}
-				}
-				else
-				{
-					$linkAttr['data-title'] = $imgData['alt'];
-				}
-			}
-			else
-			{
-				$imgPath                = Uri::base(true) . '/' . $imagesPath . '/' . $image;
-				$imgAbsPath             = JPATH_SITE . '/' . $imagesPath . '/' . $image;
-				$imgAbsCachePath        = $thumbCachePath . '/' . $image;
-				$imgData['thumb']       = Uri::base(true) . str_replace(JPATH_SITE, '', $thumbCachePath) . '/' . $image;
-				$imgData['alt']         = str_replace(array('-', '_'), " ", strip_tags(File::stripExt($image)));
-				$linkAttr['data-title'] = $imgData['alt'];
-			}
+			$imgObject        = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
+			$imgAbsCachePath  = $thumbCachePath . '/' . $imgObject->fileName;
+			$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgAbsCachePath);
+			$imgData['alt']   = $imgObject->alt;
 
 			if (!file_exists($imgAbsCachePath))
 			{
 				// Todo: Prüfung auf Thumbnail, ggf. erstellen auf feste Größe von 480px (crop)
-				$imgData['thumb'] = $imgPath;
+				$imgData['thumb'] = $imgObject->url;
 			}
 
-			$imgData['attribs'] = $attribs;
+			if (!empty($imgObject->title))
+			{
+				$linkAttr['data-title']    = $imgObject->title;
+				$imgData['title']          = $imgObject->title;
+				$imgData['titleContainer'] = $image->title_container;
+
+				if ($imageLayout != '0')
+				{
+					$sublayout = $imageLayout;
+				}
+			}
+			else
+			{
+				$linkAttr['data-title'] = $imgData['alt'];
+			}
 
 			$img = $this->sublayout($sublayout, $imgData);
 
-			echo HTMLHelper::_('link', $imgPath, $img, $linkAttr); ?>
+			echo HTMLHelper::_('link', $imgObject->url, $img, $linkAttr); ?>
 		</div>
 	<?php endforeach; ?>
 </div>
