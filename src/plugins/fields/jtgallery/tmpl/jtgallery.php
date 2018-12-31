@@ -22,8 +22,7 @@ use Joomla\CMS\Layout\FileLayout;
 
 if (!$field->value
 	|| $field->value == '-1'
-	|| !in_array($context, array('com_content.article', 'com_content.category'))
-	|| empty($item->asset_id))
+	|| !in_array($context, array('com_content.article', 'com_content.category')))
 {
 	return;
 }
@@ -32,6 +31,11 @@ if (!$field->value
 $params = json_decode($field->value);
 $class  = $params->container_class;
 $frwk   = 'default';
+
+if (!$params->activate)
+{
+	return;
+}
 
 if (!empty($params->layout))
 {

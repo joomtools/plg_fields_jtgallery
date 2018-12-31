@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
+	<field name="activate"
+	       type="radio"
+	       class="btn-group"
+	       default="0"
+	       label="JTGALLERY_PARAMS_ACTIVATE_LABEL"
+	       description="JTGALLERY_PARAMS_ACTIVATE_DESC"
+	>
+		<option value="1">JON</option>
+		<option value="0">JOFF</option>
+	</field>
+
 	<field name="container_class"
 	       type="textarea"
 	       rows="5"
 	       label="JTGALLERY_PARAMS_CONTAINER_CLASS_SUFFIX_LABEL"
 	       description="JTGALLERY_PARAMS_CONTAINER_CLASS_SUFFIX_DESC"
+	       showon="activate:1"
 	/>
 
 	<field name="layout"
 	       type="list"
 	       label="JTGALLERY_PARAMS_LAYOUT_LABEL"
 	       description="JTGALLERY_PARAMS_LAYOUT_DESC"
+	       showon="activate:1"
 	>
 		<option value="">JDEFAULT</option>
 		<option value="uikit2">UIkit2</option>
@@ -22,6 +35,7 @@
 	       min="1"
 	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
 	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_DESC"
+	       showon="activate:1"
 	/>
 
 	<field name="thumbnail_width"
@@ -30,6 +44,7 @@
 		   maxlength="10"
 		   label="JTGALLERY_THUMBNAIL_WIDTH_LABEL"
 		   description="JTGALLERY_THUMBNAIL_WIDTH_DESC"
+		   showon="activate:1"
 	/>
 
 	<field name="thumbnail_height"
@@ -38,6 +53,7 @@
 		   maxlength="10"
 		   label="JTGALLERY_THUMBNAIL_HEIGHT_LABEL"
 		   description="JTGALLERY_THUMBNAIL_HEIGHT_DESC"
+		   showon="activate:1"
 	/>
 
 	<field name="single_folder"
@@ -45,6 +61,7 @@
 	       default="folder"
 	       label="JTGALLERY_PARAMS_SINGLE_FOLDER_LABEL"
 	       description="JTGALLERY_PARAMS_SINGLE_FOLDER_DESC"
+	       showon="activate:1"
 	>
 		<option value="single">JTGALLERY_PARAMS_SINGLE_FOLDER_OPTION_SINGLE_LABEL</option>
 		<option value="folder">JTGALLERY_PARAMS_SINGLE_FOLDER_OPTION_FOLDER_LABEL</option>
@@ -58,7 +75,7 @@
 	       recursive="true"
 	       label="JTGALLERY_PARAMS_DIRECTORY_LABEL"
 	       description="JTGALLERY_PARAMS_DIRECTORY_DESC"
-	       showon="single_folder:folder"
+	       showon="single_folder:folder[AND]activate:1"
 	>
 		<option value="/">COM_FIELDS_FIELD_USE_GLOBAL</option>
 	</field>
@@ -69,7 +86,7 @@
 	       class="btn-group"
 	       label="JTGALLERY_PARAMS_CAPTION_OVERLAY_LABEL"
 	       description="JTGALLERY_PARAMS_CAPTION_OVERLAY_DESC"
-	       showon="single_folder:single"
+	       showon="single_folder:single[AND]activate:1"
 	>
 		<option value="0">JOFF</option>
 		<option value="caption">Caption</option>
@@ -83,6 +100,6 @@
 	       min="1"
 	       label="JTGALLERY_SINGLE_PICTURE_LABEL"
 	       description="JTGALLERY_SINGLE_PICTURE_DESC"
-	       showon="single_folder:single"
+	       showon="single_folder:single[AND]activate:1"
 	/>
 </form>
