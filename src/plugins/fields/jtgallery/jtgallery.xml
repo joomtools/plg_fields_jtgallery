@@ -13,7 +13,7 @@
 		##FILES##
 	</files>
 	<media destination="plg_fields_jtgallery" folder="media">
-		##MEDIA##
+		##MEDIA_FILES##
 	</media>
 	<updateservers>
 		<server type="extension" priority="1" name="JTGALLERY_XML_NAME">https://raw.githubusercontent.com/JoomTools/plg_fields_jtgallery/master/update.xml</server>
