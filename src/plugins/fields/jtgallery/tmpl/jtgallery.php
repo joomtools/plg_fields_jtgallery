@@ -1,10 +1,18 @@
 <?php
 /**
- * @package     Joomla.Plugin
- * @subpackage  Fields.Gallery
+
+ * @package      Joomla.Plugin
+
+ * @subpackage   Fields.Jtgallery
+
  *
- * @copyright   Copyright (C) Guido De Gobbis, Barbara Assmann.
- * @license     GNU General Public License version 3 or later; see LICENSE.txt
+
+ * @author       Barbara Assmann, Guido De Gobbis
+
+ * @copyright    (c) JoomTools.de - All rights reserved.
+
+ * @license      GNU General Public License version 3 or later
+
  */
 
 defined('_JEXEC') or die;
