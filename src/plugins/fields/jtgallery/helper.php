@@ -1,11 +1,18 @@
 <?php
-/**
- * @package      Joomla.Plugin
- * @subpackage   Fields.Jtgallery
- *
- * @author       Barbara Assmann, Guido De Gobbis
- * @copyright    (c) JoomTools.de - All rights reserved.
- * @license      GNU General Public License version 3 or later
+/**
+
+ * @package      Joomla.Plugin
+
+ * @subpackage   Fields.Jtgallery
+
+ *
+
+ * @author       Barbara Assmann, Guido De Gobbis
+
+ * @copyright    (c) JoomTools.de - All rights reserved.
+
+ * @license      GNU General Public License version 3 or later
+
  */
 
 defined('_JEXEC') or die;
@@ -80,6 +87,7 @@ class PlgFieldsJtgalleryHelper
 		{
 			$js ="window.onload = function() {\n";
 			$js .="\tbaguetteBox.run('.jtgallery_container', {\n";
+			$js .="\t\tloop: true,\n";
 			$js .="\t\tanimation: 'fadeIn',\n";
 			$js .="\t\tnoScrollbars: true\n";
 			$js .="\t});\n";

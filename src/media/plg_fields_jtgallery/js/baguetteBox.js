@@ -1,7 +1,7 @@
 /*!
  * baguetteBox.js
  * @author  feimosi
- * @version 1.11.0
+ * @version Branch gallery-looping
  * @url https://github.com/feimosi/baguetteBox.js
  */
 
@@ -21,12 +21,12 @@
 
     // SVG shapes used on the buttons
     var leftArrow = '<svg width="44" height="60">' +
-            '<polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4"' +
-              'stroke-linecap="butt" fill="none" stroke-linejoin="round"/>' +
-            '</svg>',
+        '<polyline points="30 10 10 30 30 50" stroke="rgba(255,255,255,0.5)" stroke-width="4"' +
+        'stroke-linecap="butt" fill="none" stroke-linejoin="round"/>' +
+        '</svg>',
         rightArrow = '<svg width="44" height="60">' +
             '<polyline points="14 10 34 30 14 50" stroke="rgba(255,255,255,0.5)" stroke-width="4"' +
-              'stroke-linecap="butt" fill="none" stroke-linejoin="round"/>' +
+            'stroke-linecap="butt" fill="none" stroke-linejoin="round"/>' +
             '</svg>',
         closeX = '<svg width="30" height="30">' +
             '<g stroke="rgb(160,160,160)" stroke-width="4">' +
@@ -36,6 +36,7 @@
     // Global options and their defaults
     var options = {},
         defaults = {
+            loop: false,
             captions: true,
             buttons: 'auto',
             fullScreen: false,
@@ -113,7 +114,7 @@
         } else if (touchEvent.pageX - touch.startX < -40) {
             touchFlag = true;
             showNextImage();
-        // Move 100 pixels up to close the overlay
+            // Move 100 pixels up to close the overlay
         } else if (touch.startY - touchEvent.pageY > 100) {
             hideOverlay();
         }
@@ -298,21 +299,21 @@
 
     function keyDownHandler(event) {
         switch (event.keyCode) {
-        case 37: // Left arrow
-            showPreviousImage();
-            break;
-        case 39: // Right arrow
-            showNextImage();
-            break;
-        case 27: // Esc
-            hideOverlay();
-            break;
-        case 36: // Home
-            showFirstImage(event);
-            break;
-        case 35: // End
-            showLastImage(event);
-            break;
+            case 37: // Left arrow
+                showPreviousImage();
+                break;
+            case 39: // Right arrow
+                showNextImage();
+                break;
+            case 27: // Esc
+                hideOverlay();
+                break;
+            case 36: // Home
+                showFirstImage(event);
+                break;
+            case 35: // End
+                showLastImage(event);
+                break;
         }
     }
 
@@ -634,14 +635,19 @@
             showOverlay(index);
             return true;
         }
+
         if (index < 0) {
-            if (options.animation) {
+            if (options.loop) {
+                show(imagesElements.length - 1, gallery);
+            } else if (options.animation) {
                 bounceAnimation('left');
             }
             return false;
         }
         if (index >= imagesElements.length) {
-            if (options.animation) {
+            if (options.loop) {
+                show(0, gallery);
+            } else if (options.animation) {
                 bounceAnimation('right');
             }
             return false;
