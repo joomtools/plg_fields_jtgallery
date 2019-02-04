@@ -1,11 +1,18 @@
 <?php
-/**
- * @package      Joomla.Plugin
- * @subpackage   Fields.Jtgallery
- *
- * @author       Barbara Assmann, Guido De Gobbis
- * @copyright    (c) JoomTools.de - All rights reserved.
- * @license      GNU General Public License version 3 or later
+/**
+
+ * @package      Joomla.Plugin
+
+ * @subpackage   Fields.Jtgallery
+
+ *
+
+ * @author       Barbara Assmann, Guido De Gobbis
+
+ * @copyright    (c) JoomTools.de - All rights reserved.
+
+ * @license      GNU General Public License version 3 or later
+
  */
 
 defined('_JEXEC') or die;
@@ -28,7 +35,7 @@ $attribs['class'] = 'uk-overlay-spin';
 ?>
 <figure class="uk-thumbnail uk-overlay uk-overlay-hover">
 	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
-	<figcaption class="uk-overlay-panel uk-overlay-fade uk-overlay-background uk-flex uk-flex-center uk-flex-middle">
+	<figcaption class="uk-overlay-panel uk-overlay-fade uk-overlay-background uk-flex uk-flex-center uk-flex-middle uk-text-center">
 		<<?php echo $titleContainer; ?>><?php echo $title; ?></<?php echo $titleContainer; ?>>
 	</figcaption>
 </figure>
