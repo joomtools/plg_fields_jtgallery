@@ -1,5 +1,5 @@
 {
-  "name"       : "webnet-assmann/gallery-custom-field",
+  "name"       : "JoomTools/plg_fields_jtgallery",
   "description": "",
   "license"    : "GPL-3+",
   "require"    : {
