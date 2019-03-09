@@ -12,7 +12,7 @@
 	<files>
 		##FILES##
 	</files>
-	<media destination="plg_fields_jtgallery" folder="media">
+	<media destination="plg_fields_jtgallery" folder="media/plg_fields_jtgallery">
 		##MEDIA_FILES##
 	</media>
 	<updateservers>
