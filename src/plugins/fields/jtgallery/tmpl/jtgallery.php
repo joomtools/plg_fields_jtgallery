@@ -30,19 +30,14 @@ if (!$field->value
 // Get the params set in article/category for gallery
 $params = json_decode($field->value);
 $class  = $params->container_class;
-$frwk   = 'default';
+$frwk   = $params->layout;
 
 if (!$params->activate)
 {
 	return;
 }
 
-if (!empty($params->layout))
-{
-	$frwk = $params->layout;
-}
-
-$theme             = JFactory::getApplication()->getTemplate();
+$theme             = Factory::getApplication()->getTemplate();
 $themeOverridePath = JPATH_THEMES . '/' . $theme . '/html/plg_' . $this->_type . '_' . $this->_name;
 $layoutBasePath    = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/tmpl/layouts';
 $thumbCachePath    = JPATH_SITE . '/cache/plg_' . $this->_type . '_' . $this->_name . '/thumbnails';
@@ -69,12 +64,20 @@ else
 	$images = (array) $params->single_pictures;
 }
 
+$itemsXline = (object) $params->items_x_line;
+
+if ($frwk == 'bs2')
+{
+	$itemsXline = (int) round(12 / (int) $params->items_x_line_m);
+}
+
 $displayData = array(
+	'frwk'           => $frwk,
 	'images'         => $images,
 	'imagesPath'     => $imagesPath,
 	'imageLayout'    => $params->caption_overlay,
 	'thumbCachePath' => $thumbCachePath,
-	'itemsXline'     => $params->items_x_line,
+	'itemsXline'     => $itemsXline,
 );
 
 JHtml::_('stylesheet', 'plg_fields_jtgallery/baguetteBox.min.css', array('version' => 'auto', 'relative' => true));

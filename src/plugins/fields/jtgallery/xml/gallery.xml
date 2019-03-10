@@ -25,8 +25,11 @@
 	       description="JTGALLERY_PARAMS_LAYOUT_DESC"
 	       showon="activate:1"
 	>
-		<option value="">JDEFAULT</option>
+		<option value="bs2">Joomla 3 (Bootstrap 2)</option>
+		<!--<option value="bs4">Joomla 4 (Bootstrap 4)</option>
+		<option value="bs3">Bootstrap 3</option>-->
 		<option value="uikit2">UIkit2</option>
+		<!--<option value="uikit3">UIkit3</option>-->
 	</field>
 
 	<field name="items_x_line"
@@ -35,18 +38,18 @@
 	       min="1"
 	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
 	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_DESC"
-	       showon="activate:1"
+	       showon="activate:1[AND]layout!:bs2"
 	/>
 
-	<field name="thumbnail_width"
-		   type="text"
-		   default="480"
-		   maxlength="10"
-		   label="JTGALLERY_THUMBNAIL_WIDTH_LABEL"
-		   description="JTGALLERY_THUMBNAIL_WIDTH_DESC"
-		   showon="activate:1"
-	/>
-
+	<field name="items_x_line_m"
+	       type="integer"
+	       default="3"
+	       first="1"
+	       last="4"
+	       step="1"
+	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
+	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_M_DESC"
+	       showon="layout:bs2"
 	<field name="thumbnail_height"
 		   type="text"
 		   default="360"
