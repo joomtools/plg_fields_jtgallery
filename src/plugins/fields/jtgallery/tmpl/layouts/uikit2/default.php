@@ -1,11 +1,11 @@
 <?php
-/**
- * @package      Joomla.Plugin
- * @subpackage   Fields.Jtgallery
- *
- * @author       Barbara Assmann, Guido De Gobbis
- * @copyright    (c) JoomTools.de - All rights reserved.
- * @license      GNU General Public License version 3 or later
+/**
+ * @package      Joomla.Plugin
+ * @subpackage   Fields.Jtgallery
+ *
+ * @author       Barbara Assmann, Guido De Gobbis
+ * @copyright    (c) JoomTools.de - All rights reserved.
+ * @license      GNU General Public License version 3 or later
  */
 
 defined('_JEXEC') or die;

@@ -12,23 +12,10 @@
 	       description="JTGALLERY_SINGLE_PICTURE_ALT_DESC"
 	/>
 
-	<field name="picture_title"
-	       type="text"
-	       label="JTGALLERY_SINGLE_PICTURE_TITLE_LABEL"
-	       description="JTGALLERY_SINGLE_PICTURE_TITLE_DESC"
+	<field name="picture_caption_overlay"
+	       type="editor"
+	       label="JTGALLERY_PARAMS_CAPTION_OVERLAY_LABEL"
+	       description="JTGALLERY_SINGLE_PICTURE_CAPTION_OVERLAY_DESC"
+	       filter="safehtml"
 	/>
-
-	<field name="title_container"
-	       type="list"
-	       label="JTGALLERY_SINGLE_PICTURE_TITLE_CONTAINER_LABEL"
-	       description="JTGALLERY_SINGLE_PICTURE_TITLE_CONTAINER_DESC"
-	>
-		<option value="h2">h2</option>
-		<option value="h3">h3</option>
-		<option value="h4">h4</option>
-		<option value="h5">h5</option>
-		<option value="div">div</option>
-		<option value="p">p</option>
-		<option value="span">span</option>
-	</field>
 </form>

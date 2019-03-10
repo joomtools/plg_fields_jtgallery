@@ -50,13 +50,6 @@
 	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
 	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_M_DESC"
 	       showon="layout:bs2"
-	<field name="thumbnail_height"
-		   type="text"
-		   default="360"
-		   maxlength="10"
-		   label="JTGALLERY_THUMBNAIL_HEIGHT_LABEL"
-		   description="JTGALLERY_THUMBNAIL_HEIGHT_DESC"
-		   showon="activate:1"
 	/>
 
 	<field name="single_folder"

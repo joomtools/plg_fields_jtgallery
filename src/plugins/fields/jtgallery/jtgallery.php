@@ -1,11 +1,18 @@
 <?php
-/**
- * @package      Joomla.Plugin
- * @subpackage   Fields.Jtgallery
- *
- * @author       Barbara Assmann, Guido De Gobbis
- * @copyright    (c) JoomTools.de - All rights reserved.
- * @license      GNU General Public License version 3 or later
+/**
+
+ * @package      Joomla.Plugin
+
+ * @subpackage   Fields.Jtgallery
+
+ *
+
+ * @author       Barbara Assmann, Guido De Gobbis
+
+ * @copyright    (c) JoomTools.de - All rights reserved.
+
+ * @license      GNU General Public License version 3 or later
+
  */
 
 defined('_JEXEC') or die;
@@ -16,9 +23,9 @@ JLoader::import('components.com_fields.libraries.fieldsplugin', JPATH_ADMINISTRA
 JLoader::register('PlgFieldsJtgalleryHelper', __DIR__ . '/helper.php');
 
 /**
- * Fields Imagelist Plugin
+ * Fields ImageGallery Plugin
  *
- * @since  1.0.0
+ * @since   1.0.0
  */
 class PlgFieldsJtgallery extends FieldsPlugin
 {
@@ -34,7 +41,7 @@ class PlgFieldsJtgallery extends FieldsPlugin
 	 *
 	 * @return   array|\string[][]
 	 *
-	 * @since    1.0
+	 * @since   1.0.0
 	 */
 	public function onCustomFieldsGetTypes()
 	{
@@ -58,7 +65,7 @@ class PlgFieldsJtgallery extends FieldsPlugin
 	 *
 	 * @return   void
 	 *
-	 * @since   1.0
+	 * @since   1.0.0
 	 */
 	public function onContentPrepareForm(JForm $form, $data)
 	{
@@ -66,6 +73,7 @@ class PlgFieldsJtgallery extends FieldsPlugin
 
 		return parent::onContentPrepareForm($form, $data);
 	}
+
 	/**
 	 * Transforms the field into a DOM XML element and appends it as a child on the given parent.
 	 *
@@ -73,9 +81,9 @@ class PlgFieldsJtgallery extends FieldsPlugin
 	 * @param   DOMElement  $parent  The field node parent.
 	 * @param   JForm       $form    The form.
 	 *
-	 * @return  DOMElement
+	 * @return   DOMElement
 	 *
-	 * @since   3.9.0
+	 * @since   1.0.0
 	 */
 	public function onCustomFieldsPrepareDom($field, DOMElement $parent, JForm $form)
 	{
@@ -115,9 +123,9 @@ class PlgFieldsJtgallery extends FieldsPlugin
 	 * @param   boolean  $isNew    Is new item
 	 * @param   array    $data     The validated data
 	 *
-	 * @return  boolean
+	 * @return   boolean
 	 *
-	 * @since   3.9.0
+	 * @since   1.0.0
 	 */
 	public function onContentAfterSave($context, $item, $isNew, $data = array())
 	{

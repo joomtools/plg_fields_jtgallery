@@ -1,22 +1,16 @@
 <?php
 /**
-
  * @package      Joomla.Plugin
-
  * @subpackage   Fields.Jtgallery
-
  *
-
  * @author       Barbara Assmann, Guido De Gobbis
-
  * @copyright    (c) JoomTools.de - All rights reserved.
-
  * @license      GNU General Public License version 3 or later
-
  */
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Filesystem\Folder;
 use Joomla\CMS\Layout\FileLayout;
 
@@ -29,7 +23,7 @@ if (!$field->value
 
 // Get the params set in article/category for gallery
 $params = json_decode($field->value);
-$class  = $params->container_class;
+$class  = (string) $params->container_class;
 $frwk   = $params->layout;
 
 if (!$params->activate)
@@ -40,8 +34,8 @@ if (!$params->activate)
 $theme             = Factory::getApplication()->getTemplate();
 $themeOverridePath = JPATH_THEMES . '/' . $theme . '/html/plg_' . $this->_type . '_' . $this->_name;
 $layoutBasePath    = JPATH_PLUGINS . '/' . $this->_type . '/' . $this->_name . '/tmpl/layouts';
-$thumbCachePath    = JPATH_SITE . '/cache/plg_' . $this->_type . '_' . $this->_name . '/thumbnails';
-$imagesPath    = false;
+$thumbCachePath    = JPATH_SITE . '/cache/plg_' . $this->_type . '_' . $this->_name;
+$imagesPath        = false;
 
 $renderer = new FileLayout($frwk, $layoutBasePath, array('component' => 'none'));
 $renderer->addIncludePath($themeOverridePath);
@@ -78,15 +72,8 @@ $displayData = array(
 	'imageLayout'    => $params->caption_overlay,
 	'thumbCachePath' => $thumbCachePath,
 	'itemsXline'     => $itemsXline,
-);
+); ?>
 
-JHtml::_('stylesheet', 'plg_fields_jtgallery/baguetteBox.min.css', array('version' => 'auto', 'relative' => true));
-JHtml::_('script', 'plg_fields_jtgallery/baguetteBox.min.js', array('version' => 'auto', 'relative' => true));
-
-PlgFieldsJtgalleryHelper::initJs();
-
-?>
-
-<div class="jtgallery_container <?php echo $class; ?>">
+<div class="jtgallery_container<?php echo $class; ?>">
 	<?php echo $renderer->render($displayData); ?>
 </div>
