@@ -51,6 +51,9 @@ $imagesPath    = false;
 $renderer = new FileLayout($frwk, $layoutBasePath, array('component' => 'none'));
 $renderer->addIncludePath($themeOverridePath);
 
+$debug = $this->params->get('debug') !== '0';
+$renderer->setOptions(array('debug' => $debug));
+
 if ($params->single_folder == 'folder')
 {
 	$imagesPath = $params->directory === '/'
