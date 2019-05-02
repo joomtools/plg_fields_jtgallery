@@ -28,6 +28,6 @@ $attribs['class'] = 'uk-overlay-spin';
 <figure class="uk-thumbnail uk-overlay uk-overlay-hover">
 	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
 	<figcaption class="uk-overlay-panel uk-overlay-fade uk-overlay-background uk-flex uk-flex-center uk-flex-middle uk-text-center">
-		<?php echo $caption_overlay; ?>
+		<div><?php echo $caption_overlay; ?></div>
 	</figcaption>
 </figure>
