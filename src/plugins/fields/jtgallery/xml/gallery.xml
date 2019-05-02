@@ -19,6 +19,33 @@
 	       showon="activate:1"
 	/>
 
+	<field name="thumbnails"
+	       type="radio"
+	       class="btn-group"
+	       default="0"
+	       label="JTGALLERY_PARAMS_THUMB_LABEL"
+	       description="JTGALLERY_PARAMS_THUMB_DESC"
+	>
+		<option value="1">JYES</option>
+		<option value="0">JNO</option>
+	</field>
+
+	<field name="thumb_width"
+	       type="text"
+	       default="320px"
+	       label="JTGALLERY_PARAMS_THUMBWITH_LABEL"
+	       description="JTGALLERY_PARAMS_THUMBWITH_DESC"
+	       showon="activate:1[AND]thumbnails:1"
+	/>
+
+	<field name="thumb_height"
+	       type="text"
+	       default="240px"
+	       label="JTGALLERY_PARAMS_THUMBHEIGHT_LABEL"
+	       description="JTGALLERY_PARAMS_HUMBHEIGHT_DESC"
+	       showon="activate:1[AND]thumbnails:1"
+	/>
+
 	<field name="layout"
 	       type="list"
 	       label="JTGALLERY_PARAMS_LAYOUT_LABEL"

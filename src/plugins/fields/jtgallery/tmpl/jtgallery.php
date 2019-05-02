@@ -66,12 +66,17 @@ if ($frwk == 'bs2')
 }
 
 $displayData = array(
-	'frwk'           => $frwk,
-	'images'         => $images,
-	'imagesPath'     => $imagesPath,
-	'imageLayout'    => $params->caption_overlay,
-	'thumbCachePath' => $thumbCachePath,
-	'itemsXline'     => $itemsXline,
+	'frwk'        => $frwk,
+	'images'      => $images,
+	'imagesPath'  => $imagesPath,
+	'imageLayout' => $params->caption_overlay,
+	'thumbnails'  => array(
+		'active'    => $params->thumbnails,
+		'cachePath' => $thumbCachePath,
+		'width'     => $params->thumb_width,
+		'height'    => $params->thumb_height,
+	),
+	'itemsXline'  => $itemsXline,
 ); ?>
 
 <div class="jtgallery_container<?php echo $class; ?>">

@@ -20,12 +20,13 @@ use Joomla\CMS\Uri\Uri;
 /**
  * Layout variables
  * ---------------------
- * @var   string  $frwk            Selected framework.
- * @var   array   $images          All selected images or all images inside of selected folder.
- * @var   string  $imagesPath      Absolute path of images if folder is selected.
- * @var   string  $imageLayout     Layout for image output.
- * @var   string  $thumbCachePath  Absolute path for thumbnails or responsive images.
- * @var   int     $itemsXline      Items x line selected for responive views.
+ * @var   string  $frwk         Selected framework.
+ * @var   array   $images       All selected images or all images inside of selected folder.
+ * @var   string  $imagesPath   Absolute path of images if folder is selected.
+ * @var   string  $imageLayout  Layout for image output.
+ * @var   array   $thumbnails   Array with cache path, thumbwidth, thumbheight and if activate genereting
+ *                              array_keys = active, cachePath, width and height
+ * @var   int     $itemsXline   Items x line selected for responive views.
  */
 
 $imgCounter = 1;
@@ -37,20 +38,16 @@ $imgCounter = 1;
 	<?php endif; ?>
 	<<?php echo $imgContainer; ?> class="<?php echo $imgWidth; ?>">
 		<?php
-		$imgObject        = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
-		$imgAbsCachePath  = $thumbCachePath . '/' . $imgObject->fileName;
-		$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgAbsCachePath);
+		$imgObject             = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
+		$imgObject->thumbnails = $thumbnails;
+
 		$imgData['alt']   = $imgObject->alt;
+		$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgObject->imgAbsPath);
 
-		if (!file_exists($imgAbsCachePath))
+		if ($thumbnails['active'])
 		{
-			// Todo: Prüfung auf Thumbnail, ggf. erstellen auf feste Größe von 480px (crop)
-			$createThumb = PlgFieldsJtgalleryHelper::createThumbnail($imgAbsCachePath, $image, $imagesPath);
-
-			if ($createThumb === false)
-				{
-					$imgData['thumb'] = $imgObject->url;
-				}
+			PlgFieldsJtgalleryHelper::createThumbnail($imgObject);
+			$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgObject->thumbnails['thumbAbsPath']);
 		}
 
 		if (!empty($imgObject->caption_overlay))

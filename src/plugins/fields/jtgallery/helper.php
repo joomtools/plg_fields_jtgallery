@@ -11,7 +11,7 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Uri\Uri;
-use Joomla\Filesystem\File;
+use Joomla\Image\Image;
 
 /**
  * Helper for plg_fields_jtgallery
@@ -28,18 +28,36 @@ class PlgFieldsJtgalleryHelper
 	public static $runJs = false;
 
 	/**
-	 * @param   string         $thmpPath
-	 * @param   string|object  $image
-	 * @param   string         $imagesPath
+	 * @param   object  $imgObject
 	 *
-	 * @return   object
+	 * @return   void
 	 *
 	 * @since    1.0.0
 	 */
-	public static function createThumbnail($thumbPath, $image, $imagesPath)
+	public static function createThumbnail(& $imgObject)
 	{
-		return false;
+		$image        = new Image($imgObject->imgAbsPath);
+		$newImage     = $image->resize($imgObject->thumbnails['width'], $imgObject->thumbnails['height'], true, Image::SCALE_FIT);
+		$thumbWidth   = $newImage->getWidth();
+		$thumbHeight  = $newImage->getHeight();
+
+		$newImage->destroy();
+
+		$thumbAbsPath = $imgObject->thumbnails['cachePath']
+			. '/' . $imgObject->fileName
+			. '_' . $thumbWidth . 'x' . $thumbHeight
+			. '.' . $imgObject->fileExt;
+
+		if (!file_exists($thumbAbsPath))
+		{
+			$thumbAbsPath = $image->createThumbs($thumbWidth . 'x' . $thumbHeight, Image::CROP_RESIZE, $imgObject->thumbnails['cachePath'])[0]
+				->getPath();
+		}
+
+		$image->destroy();
+		$imgObject->thumbnails['thumbAbsPath'] = $thumbAbsPath;
 	}
+
 	/**
 	 * @param   string         $imagesPath
 	 * @param   string|object  $image
@@ -55,21 +73,19 @@ class PlgFieldsJtgalleryHelper
 
 		if ($imagesPath === false)
 		{
-			$fileName = explode('/', str_replace(array('\\\\', '\\'), '/', $image->picture));
-
-			$image->picture_alt = trim(strip_tags($image->picture_alt));
-
-			$imgObject->fileName   = array_pop($fileName);
+			$imgObject->file       = pathinfo($image->picture, PATHINFO_BASENAME);
+			$imgObject->fileName   = pathinfo($image->picture, PATHINFO_FILENAME);
+			$imgObject->fileExt    = pathinfo($image->picture, PATHINFO_EXTENSION);
 			$imgObject->url        = Uri::base(true) . '/' . $image->picture;
 			$imgObject->imgAbsPath = JPATH_SITE . '/' . $image->picture;
 
 			if (!empty($image->picture_alt))
 			{
-				$imgObject->alt = $image->picture_alt;
+				$imgObject->alt = trim(strip_tags($image->picture_alt));
 			}
 			else
 			{
-				$imgObject->alt = str_replace(array('-', '_'), " ", File::stripExt($imgObject->fileName));
+				$imgObject->alt = str_replace(array('-', '_'), " ", $imgObject->fileName);
 			}
 
 			if (!empty($image->picture_caption_overlay))
@@ -79,10 +95,12 @@ class PlgFieldsJtgalleryHelper
 		}
 		else
 		{
-			$imgObject->fileName   = $image;
+			$imgObject->file       = $image;
+			$imgObject->fileName   = pathinfo($image, PATHINFO_FILENAME);
+			$imgObject->fileExt    = pathinfo($image, PATHINFO_EXTENSION);
 			$imgObject->url        = Uri::base(true) . '/' . $imagesPath . '/' . $image;
 			$imgObject->imgAbsPath = JPATH_SITE . '/' . $imagesPath . '/' . $image;
-			$imgObject->alt        = str_replace(array('-', '_'), " ", strip_tags(File::stripExt($image)));
+			$imgObject->alt        = str_replace(array('-', '_'), " ", $imgObject->fileName);
 		}
 
 		return $imgObject;
