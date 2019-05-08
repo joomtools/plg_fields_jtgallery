@@ -50,7 +50,7 @@ if ($params->single_folder == 'folder')
 		: 'images/' . $params->directory;
 
 	// read the .jpg from the selected directory
-	$filter = '(\.png|\.jpg|\.jpeg)';
+	$filter = '(\.gif|\.png|\.jpg|\.jpeg|\.GIF|\.PNG|\.JPG|\.JPEG)';
 	$images = Folder::files(JPATH_SITE . '/' . $imagesPath, $filter);
 }
 else
