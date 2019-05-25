@@ -24,6 +24,7 @@ extract($displayData);
  * @var   string  $imageLayout     Layout for image output.
  * @var   string  $thumbCachePath  Absolute path for thumbnails or responsive images.
  * @var   int     $itemsXline      Items x line selected for responive views.
+ * @var   int     $itemsXlineBs2   Items x line selected for view.
  */
 
 $linkAttr = array();

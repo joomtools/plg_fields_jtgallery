@@ -27,12 +27,13 @@ use Joomla\CMS\Uri\Uri;
  * @var   array   $thumbnails   Array with cache path, thumbwidth, thumbheight and if activate genereting
  *                              array_keys = active, cachePath, width and height
  * @var   int     $itemsXline   Items x line selected for responive views.
+ * @var   int     $itemsXlineBs2   Items x line selected for view.
  */
 
 $imgCounter = 1;
 ?>
 <?php foreach ($images as $image) : ?>
-	<?php if ($frwk == 'bs2' && ($imgCounter % $itemsXline == 0)) : ?>
+	<?php if ($frwk == 'bs2' && ($imgCounter > $itemsXlineBs2)) : ?>
 		</ul><ul class="thumbnails">
 	<?php $imgCounter = 1; ?>
 	<?php endif; ?>

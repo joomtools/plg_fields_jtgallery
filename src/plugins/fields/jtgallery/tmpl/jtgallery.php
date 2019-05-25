@@ -58,25 +58,28 @@ else
 	$images = (array) $params->single_pictures;
 }
 
-$itemsXline = (object) $params->items_x_line;
+$itemsXline    = (object) $params->items_x_line;
+$itemsXlineBs2 = 3;
 
 if ($frwk == 'bs2')
 {
+	$itemsXlineBs2 = (int) $params->items_x_line_m;
 	$itemsXline = (int) round(12 / (int) $params->items_x_line_m);
 }
 
 $displayData = array(
-	'frwk'        => $frwk,
-	'images'      => $images,
-	'imagesPath'  => $imagesPath,
-	'imageLayout' => $params->caption_overlay,
-	'thumbnails'  => array(
+	'frwk'          => $frwk,
+	'images'        => $images,
+	'imagesPath'    => $imagesPath,
+	'imageLayout'   => $params->caption_overlay,
+	'thumbnails'    => array(
 		'active'    => $params->thumbnails,
 		'cachePath' => $thumbCachePath,
 		'width'     => $params->thumb_width,
 		'height'    => $params->thumb_height,
 	),
-	'itemsXline'  => $itemsXline,
+	'itemsXline'    => $itemsXline,
+	'itemsXlineBs2' => $itemsXlineBs2,
 ); ?>
 
 <div class="jtgallery_container<?php echo $class; ?>">

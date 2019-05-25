@@ -72,11 +72,11 @@
 	       type="integer"
 	       default="3"
 	       first="1"
-	       last="4"
+	       last="6"
 	       step="1"
 	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
 	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_M_DESC"
-	       showon="layout:bs2"
+	       showon="activate:1[AND]layout:bs2"
 	/>
 
 	<field name="single_folder"
