@@ -21,14 +21,15 @@ extract($displayData);
  * @var   string  $alt              Alternate text of image.
  * @var   array   $attribs          Attributes of image or empty.
  * @var   string  $caption_overlay  Html for caption/overlay.
- * @var   string  $containerClass   Classes for container.
+ * @var   array   $containerClass   CSS classes for container.
  */
 
-$containerClass = !empty($containerClass) ? ' class="' . $containerClass . '"' : '';
+$attribs['uk-img'] = 'data-src:' . $thumb;
+$containerClass    = !empty($containerClass) ? ' class="' . $containerClass . '"' : '';
 ?>
 <figure<?php echo $containerClass ;?>>
-	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
-	<figcaption class="uk-thumbnail-caption">
+	<?php echo HTMLHelper::_('image', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg==', $alt, $attribs, false, -1); ?>
+	<figcaption class="caption text-center">
 		<?php echo $caption_overlay; ?>
 	</figcaption>
 </figure>

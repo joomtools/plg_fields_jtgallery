@@ -47,16 +47,17 @@
 	/>
 
 	<field name="layout"
-	       type="list"
+	       type="radio"
+	       class="btn-group"
 	       label="JTGALLERY_PARAMS_LAYOUT_LABEL"
 	       description="JTGALLERY_PARAMS_LAYOUT_DESC"
 	       showon="activate:1"
 	>
 		<option value="bs2">Joomla 3 (Bootstrap 2)</option>
-		<!--<option value="bs4">Joomla 4 (Bootstrap 4)</option>
-		<option value="bs3">Bootstrap 3</option>-->
+		<!--<option value="bs4">Joomla 4 (Bootstrap 4)</option>-->
+		<option value="bs3">Bootstrap 3</option>
 		<option value="uikit2">UIkit2</option>
-		<!--<option value="uikit3">UIkit3</option>-->
+		<option value="uikit3">UIkit3</option>
 	</field>
 
 	<field name="items_x_line"
@@ -65,7 +66,16 @@
 	       min="1"
 	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
 	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_DESC"
-	       showon="activate:1[AND]layout!:bs2"
+	       showon="activate:1[AND]layout!:bs2,uikit3"
+	/>
+
+	<field name="items_x_line_uikit3"
+	       type="subform"
+	       formsource="plugins/fields/jtgallery/xml/items_x_line_uikit3.xml"
+	       min="1"
+	       label="JTGALLERY_PARAMS_ITEMS_X_LINE_LABEL"
+	       description="JTGALLERY_PARAMS_ITEMS_X_LINE_DESC"
+	       showon="activate:1[AND]layout:uikit3"
 	/>
 
 	<field name="items_x_line_m"
@@ -79,8 +89,63 @@
 	       showon="activate:1[AND]layout:bs2"
 	/>
 
+	<field name="gutter"
+	       type="radio"
+	       class="btn-group"
+	       default="medium"
+	       label="JTGALLERY_PARAMS_GUTTER_LABEL"
+	       description="JTGALLERY_PARAMS_GUTTER_DESC"
+	       showon="activate:1[AND]layout!:bs2,bs3"
+	>
+		<option value="collapse">JTGALLERY_PARAMS_GUTTER_NONE</option>
+		<option value="small">JTGALLERY_PARAMS_GUTTER_SMALL</option>
+		<option value="medium">JTGALLERY_PARAMS_GUTTER_MEDIUM</option>
+		<option value="large">JTGALLERY_PARAMS_GUTTER_LARGE</option>
+	</field>
+
+	<field name="gutter_bs"
+	       type="radio"
+	       class="btn-group"
+	       default="medium"
+	       label="JTGALLERY_PARAMS_GUTTER_LABEL"
+	       description="JTGALLERY_PARAMS_GUTTER_DESC"
+	       showon="activate:1[AND]layout:bs2,bs3"
+	>
+		<option value="collapse">JTGALLERY_PARAMS_GUTTER_NONE</option>
+		<option value="medium">JTGALLERY_PARAMS_GUTTER_DEFAULT</option>
+	</field>
+
+	<field name="image_layout"
+	       type="radio"
+	       default="thumbnail"
+	       class="btn-group"
+	       label="JTGALLERY_PARAMS_IMAGE_LAYOUT_LABEL"
+	       description="JTGALLERY_PARAMS_IMAGE_LAYOUT_DESC"
+	       showon="activate:1[AND]layout!:uikit3"
+	>
+		<option value="none">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_ONLY_PICTURE</option>
+		<option value="rounded">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_ROUNDED</option>
+		<option value="circle">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_CIRCLE</option>
+		<option value="thumbnail">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_POLAROID</option>
+	</field>
+
+	<field name="image_layout_uikit3"
+	       type="radio"
+	       default="none"
+	       class="btn-group"
+	       label="JTGALLERY_PARAMS_IMAGE_LAYOUT_LABEL"
+	       description="JTGALLERY_PARAMS_IMAGE_LAYOUT_DESC"
+	       showon="activate:1[AND]layout:uikit3"
+	>
+		<option value="none">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_ONLY_PICTURE</option>
+		<option value="rounded">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_ROUNDED</option>
+		<option value="circle">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_CIRCLE</option>
+		<option value="card">JTGALLERY_PARAMS_IMAGE_LAYOUT_OPTION_CARD</option>
+	</field>
+
 	<field name="single_folder"
 	       type="radio"
+	       class="btn-group"
 	       default="folder"
 	       label="JTGALLERY_PARAMS_SINGLE_FOLDER_LABEL"
 	       description="JTGALLERY_PARAMS_SINGLE_FOLDER_DESC"
@@ -105,13 +170,13 @@
 
 	<field name="caption_overlay"
 	       type="radio"
-	       default="caption"
+	       default="none"
 	       class="btn-group"
 	       label="JTGALLERY_PARAMS_CAPTION_OVERLAY_LABEL"
 	       description="JTGALLERY_PARAMS_CAPTION_OVERLAY_DESC"
-	       showon="single_folder:single[AND]activate:1"
+	       showon="activate:1"
 	>
-		<option value="0">JOFF</option>
+		<option value="none">JOFF</option>
 		<option value="caption">Caption</option>
 		<option value="overlay">Overlay</option>
 	</field>

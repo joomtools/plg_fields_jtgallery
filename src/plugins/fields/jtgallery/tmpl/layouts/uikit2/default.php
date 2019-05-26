@@ -15,13 +15,16 @@ use Joomla\CMS\HTML\HTMLHelper;
 extract($displayData);
 
 /**
-* Layout variables
-* ---------------------
-* @var   string  $thumb    Url to the thumbnail of the image.
-* @var   string  $alt      Alternate text of image.
-* @var   array   $attribs  Attributes of image or empty.
-*/
+ * Layout variables
+ * ---------------------
+ * @var   string  $thumb           Url to the thumbnail of the image.
+ * @var   string  $alt             Alternate text of image.
+ * @var   array   $attribs         Attributes of image or empty.
+ * @var   array   $containerClass  CSS classes for container.
+ */
+
+$containerClass = !empty($containerClass) ? ' class="' . $containerClass . '"' : '';
 ?>
-<figure class="uk-thumbnail">
+<figure<?php echo $containerClass ;?>>
 	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
 </figure>

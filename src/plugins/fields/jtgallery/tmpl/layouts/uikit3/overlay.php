@@ -24,12 +24,14 @@ extract($displayData);
  * @var   string  $containerClass   Classes for container.
  */
 
-$attribs['class'] = !empty($attribs['class']) ? $attribs['class'] . ' uk-overlay-spin' : 'uk-overlay-spin';
-$containerClass .= ' uk-overlay uk-overlay-hover';
+$attribs['uk-img'] = 'data-src:' . $thumb;
+$containerClass    = !empty($containerClass) ? ' class="' . trim($containerClass) . '"' : '';
 ?>
-<figure class="<?php echo trim($containerClass); ?>">
-	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
-	<figcaption class="uk-overlay-panel uk-overlay-fade uk-overlay-background uk-flex uk-flex-center uk-flex-middle uk-text-center">
-		<div><?php echo $caption_overlay; ?></div>
-	</figcaption>
+<figure<?php echo $containerClass; ?>>
+	<div class="uk-inline uk-transition-toggle <?php echo $overlay; ?>" tabindex="0">
+		<?php echo HTMLHelper::_('image', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg==', $alt, $attribs, false, -1); ?>
+		<figcaption class="uk-transition-fade uk-position-cover uk-overlay uk-overlay-primary uk-flex uk-flex-center uk-flex-middle <?php echo $overlay; ?>">
+			<div class="uk-position-center uk-text-center"><?php echo $caption_overlay; ?></div>
+		</figcaption>
+	</div>
 </figure>

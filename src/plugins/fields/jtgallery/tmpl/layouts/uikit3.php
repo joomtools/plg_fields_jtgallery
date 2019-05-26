@@ -27,63 +27,56 @@ extract($displayData);
 
 $sublayout = 'default';
 $imgData   = array();
-$imgWidth  = array();
+$imgWidth  = '';
+$imgGrid  = array();
 $linkAttr  = array();
 
 $imgData['attribs'] = array();
 
-if ($imageLayout == 'thumbnail' && $captionOverlay)
-{
-	$linkAttr['class'] = 'uk-thumbnail uk-border-rounded';
-	$imgData['attribs']['class'] = 'uk-border-rounded';
-}
-
 $imgData['containerClass'] = '';
 
-if ($imageLayout && in_array($imageLayout,array('rounded', 'thumbnail'), true) && ($captionOverlay == 'overlay' || !$captionOverlay))
+if ($imageLayout == 'card')
 {
-	$imgData['containerClass'] = 'uk-thumbnail uk-border-rounded';
+	// $linkAttr['class'] = 'uk-card uk-card-default uk-card-body uk-border-rounded';
+	$imgData['containerClass'] .= 'uk-padding-small uk-card uk-card-default uk-card-body uk-border-rounded';
+	$imgData['overlay'] = 'uk-border-rounded';
 	$imgData['attribs']['class'] = 'uk-border-rounded';
 }
 
-if ($imageLayout == 'rounded' && $captionOverlay == 'caption')
+if ($imageLayout == 'rounded')
 {
-	$imgData['containerClass'] = 'uk-border-rounded';
-	$imgData['attribs']['class'] = 'uk-thumbnail uk-border-rounded';
+	$imgData['overlay'] = 'uk-border-rounded';
+	$imgData['attribs']['class'] = 'uk-border-rounded';
 }
 
-if ($imageLayout == 'circle' && $captionOverlay != 'caption')
+if ($imageLayout == 'circle')
 {
-	$imgData['containerClass'] = 'uk-thumbnail uk-border-circle';
+	$imgData['overlay'] = 'uk-border-circle';
 	$imgData['attribs']['class'] = 'uk-border-circle';
 }
 
-if ($imageLayout == 'circle' && $captionOverlay == 'caption')
-{
-	$imgData['containerClass'] = 'uk-border-circle';
-	$imgData['attribs']['class'] = 'uk-thumbnail uk-border-circle';
-}
-
 $responsiveGrids = array(
-	'xl' => '-xlarge',
-	'l'  => '-large',
-	'm'  => '-medium',
-	's'  => '-small',
+	'xl' => '@xl',
+	'l'  => '@l',
+	'm'  => '@m',
+	's'  => '@s',
 );
 
 foreach ($responsiveGrids as $key => $grid)
 {
 	if ($itemsXline->$key != '0')
 	{
-		$imgWidth[] = 'uk-width' . $grid . '-1-' . $itemsXline->$key;
+		$imgGrid[] = 'uk-child-width-1-' . (int) $itemsXline->$key . $grid;
 	}
 }
 
 $imgContainer = 'div';
-$imgWidth     = implode(' ', $imgWidth);
-$gridMatch = $captionOverlay == 'caption' ? ' data-uk-grid-match="{target: \'figure\'}"' : '';
-PlgFieldsJtgalleryHelper::initJs(); ?>
+$imgGrid = implode(' ', $imgGrid);
+$gridMatch = $captionOverlay == 'caption' ? ' uk-height-match="target: figure"' : '';
 
-<div class="uk-grid uk-grid-<?php echo $gutter; ?> jtgallery" data-uk-grid-margin<?php echo $gridMatch; ?>>
+// PlgFieldsJtgalleryHelper::initJs();
+?>
+
+<div class="<?php echo $imgGrid; ?> uk-text-center uk-grid-<?php echo $gutter; ?>" uk-lightbox uk-grid<?php echo $gridMatch; ?>>
 	<?php include __DIR__ . '/_tmpl_base.php'; ?>
 </div>

@@ -23,8 +23,8 @@ extract($displayData);
  * @var   string  $captionOverlay  Output of Caption/Overlay if Framework support it.
  * @var   string  $imageLayout     Layout for image output.
  * @var   string  $thumbCachePath  Absolute path for thumbnails or responsive images.
- * @var   int     $itemsXline      Items x line selected for responive views.
- * @var   int     $itemsXlineBs2   Items x line selected for view.
+ * @var   object  $itemsXline      Items x line selected for responive views.
+ * @var   string  $gutter          Grid gutter between images.
  */
 
 $sublayout = 'default';
@@ -32,40 +32,63 @@ $imgData   = array();
 $imgWidth  = array();
 $linkAttr  = array();
 
-$imgData['attribs'] = array();
+$imgData['attribs']        = array('class' => 'img-responsive');
+$imgData['containerClass'] = '';
 
 if ($captionOverlay == 'overlay')
 {
 	$captionOverlay = 'caption';
 }
 
-$imgData['containerClass'] = '';
-
-if ($imageLayout == 'thumbnail')
+if ($imageLayout == 'thumbnail' && $captionOverlay)
 {
-	$imgData['containerClass'] = 'thumbnail';
+	$imgData['containerClass'] .= 'thumbnail';
 }
 
-if ($imageLayout == 'rounded')
+if ($imageLayout && in_array($imageLayout,array('rounded', 'thumbnail'), true) && !$captionOverlay)
 {
-	$imgData['attribs']['class'] = 'thumbnail';
+	$imgData['attribs']['class'] .= ' thumbnail';
 }
 
-if ($imageLayout == 'circle')
+if ($imageLayout == 'rounded' && $captionOverlay)
 {
-	$imgData['attribs']['class'] = 'img-circle';
+	$imgData['attribs']['class'] .= ' img-thumbnail';
 }
 
-$imgWidth = 'span' . $itemsXline;
+if ($imageLayout == 'circle' && !$captionOverlay)
+{
+	$imgData['attribs']['class'] .= ' img-thumbnail img-circle';
+}
+
+if ($imageLayout == 'circle' && $captionOverlay)
+{
+	$imgData['attribs']['class'] .= ' img-thumbnail img-circle';
+}
+
+$responsiveGrids = array(
+	'xl' => '-lg',
+	'l'  => '-md',
+	'm'  => '-sm',
+	's'  => '-xs',
+);
+
+foreach ($responsiveGrids as $key => $grid)
+{
+	if ($itemsXline->$key != '0')
+	{
+		$imgWidth[] = 'col' . $grid . '-' . (int) round(12 / $itemsXline->$key);
+	}
+}
 
 $imgContainer = 'div';
+$imgWidth     = implode(' ', $imgWidth);
 $gutter = $gutter == 'collapse' ? ' no-gutters': ' show-grid';
 
 HTMLHelper::_('stylesheet', 'plg_fields_jtgallery/bs.min.css', array('version' => 'auto', 'relative' => true));
 PlgFieldsJtgalleryHelper::initJs(); ?>
 
 <div class="jtgallery">
-	<div class="row thumbnails<?php echo $gutter; ?>">
+	<div class="row<?php echo $gutter; ?>">
 		<?php include __DIR__ . '/_tmpl_base.php'; ?>
 	</div>
 </div>

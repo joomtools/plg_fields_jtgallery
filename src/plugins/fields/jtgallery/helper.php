@@ -68,40 +68,39 @@ class PlgFieldsJtgalleryHelper
 	 */
 	public static function getImgObject($imagesPath, $image)
 	{
-		$imgObject        = new stdClass;
-		$imgObject->caption_overlay = '';
+		$imgObject = new stdClass;
 
 		if ($imagesPath === false)
 		{
-			$imgObject->file       = pathinfo($image->picture, PATHINFO_BASENAME);
-			$imgObject->fileName   = pathinfo($image->picture, PATHINFO_FILENAME);
-			$imgObject->fileExt    = pathinfo($image->picture, PATHINFO_EXTENSION);
-			$imgObject->url        = Uri::base(true) . '/' . $image->picture;
-			$imgObject->imgAbsPath = JPATH_SITE . '/' . $image->picture;
+			$imgObject->file            = pathinfo($image->picture, PATHINFO_BASENAME);
+			$imgObject->fileName        = pathinfo($image->picture, PATHINFO_FILENAME);
+			$imgObject->fileExt         = pathinfo($image->picture, PATHINFO_EXTENSION);
+			$imgObject->url             = Uri::base(true) . '/' . $image->picture;
+			$imgObject->imgAbsPath      = JPATH_SITE . '/' . $image->picture;
+			$imgObject->alt             = str_replace(array('-', '_'), " ", $imgObject->fileName);
+			$imgObject->caption_overlay = $imgObject->alt;
 
 			if (!empty($image->picture_alt))
 			{
 				$imgObject->alt = trim(strip_tags($image->picture_alt));
-			}
-			else
-			{
-				$imgObject->alt = str_replace(array('-', '_'), " ", $imgObject->fileName);
 			}
 
 			if (!empty($image->picture_caption_overlay))
 			{
 				$imgObject->caption_overlay = $image->picture_caption_overlay;
 			}
+
+			return $imgObject;
 		}
-		else
-		{
-			$imgObject->file       = $image;
-			$imgObject->fileName   = pathinfo($image, PATHINFO_FILENAME);
-			$imgObject->fileExt    = pathinfo($image, PATHINFO_EXTENSION);
-			$imgObject->url        = Uri::base(true) . '/' . $imagesPath . '/' . $image;
-			$imgObject->imgAbsPath = JPATH_SITE . '/' . $imagesPath . '/' . $image;
-			$imgObject->alt        = str_replace(array('-', '_'), " ", $imgObject->fileName);
-		}
+
+		$imgObject->file            = $image;
+		$imgObject->fileName        = pathinfo($image, PATHINFO_FILENAME);
+		$imgObject->fileExt         = pathinfo($image, PATHINFO_EXTENSION);
+		$imgObject->url             = Uri::base(true) . '/' . $imagesPath . '/' . $image;
+		$imgObject->imgAbsPath      = JPATH_SITE . '/' . $imagesPath . '/' . $image;
+		$imgObject->alt             = str_replace(array('-', '_'), " ", $imgObject->fileName);
+		$imgObject->alt             = str_replace(array('-', '_'), " ", $imgObject->fileName);
+		$imgObject->caption_overlay = $imgObject->alt;
 
 		return $imgObject;
 	}

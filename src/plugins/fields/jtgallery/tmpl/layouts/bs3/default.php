@@ -21,9 +21,16 @@ extract($displayData);
  * @var   string  $alt              Alternate text of image.
  * @var   array   $attribs          Attributes of image or empty.
  * @var   string  $caption_overlay  Html for caption/overlay.
+ * @var   array   $containerClass   CSS classes for container.
  */
 
-echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1); ?>
-	<div class="caption">
-		<?php echo $caption_overlay; ?>
-	</div>
+$containerClass = !empty($containerClass) ? ' class="' . $containerClass . '"' : '';
+?>
+<figure<?php echo $containerClass ;?>>
+	<?php echo HTMLHelper::_('image', $thumb, $alt, $attribs, false, -1);
+	if (!empty($caption_overlay)) : ?>
+		<figcaption class="caption text-center">
+			<?php echo $caption_overlay; ?>
+		</figcaption>
+	<?php endif; ?>
+</figure>

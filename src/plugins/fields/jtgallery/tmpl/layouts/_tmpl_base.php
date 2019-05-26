@@ -20,13 +20,14 @@ use Joomla\CMS\Uri\Uri;
 /**
  * Layout variables
  * ---------------------
- * @var   string  $frwk         Selected framework.
- * @var   array   $images       All selected images or all images inside of selected folder.
- * @var   string  $imagesPath   Absolute path of images if folder is selected.
- * @var   string  $imageLayout  Layout for image output.
- * @var   array   $thumbnails   Array with cache path, thumbwidth, thumbheight and if activate genereting
- *                              array_keys = active, cachePath, width and height
- * @var   int     $itemsXline   Items x line selected for responive views.
+ * @var   string  $frwk            Selected framework.
+ * @var   array   $images          All selected images or all images inside of selected folder.
+ * @var   string  $imagesPath      Absolute path of images if folder is selected.
+ * @var   string  $captionOverlay  Output of Caption/Overlay if Framework support it.
+ * @var   string  $imageLayout     Layout for image output.
+ * @var   array   $thumbnails      Array with cache path, thumbwidth, thumbheight and if activate genereting
+ *                                 array_keys = active, cachePath, width and height
+ * @var   int     $itemsXline      Items x line selected for responive views.
  * @var   int     $itemsXlineBs2   Items x line selected for view.
  */
 
@@ -34,41 +35,41 @@ $imgCounter = 1;
 ?>
 <?php foreach ($images as $image) : ?>
 	<?php if ($frwk == 'bs2' && ($imgCounter > $itemsXlineBs2)) : ?>
-		</ul><ul class="thumbnails">
-	<?php $imgCounter = 1; ?>
-	<?php endif; ?>
+		</div><div class="row show-grid thumbnails<?php echo $gutter; ?>">
+		<?php $imgCounter = 1;
+	endif; ?>
+
 	<<?php echo $imgContainer; ?> class="<?php echo $imgWidth; ?>">
-		<?php
-		$imgObject             = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
-		$imgObject->thumbnails = $thumbnails;
+	<?php
+	$imgObject                = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
+	$imgObject->thumbnails    = $thumbnails;
+	$linkAttr['data-caption'] = htmlentities($imgObject->caption_overlay);
 
-		$imgData['alt']   = $imgObject->alt;
-		$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgObject->imgAbsPath);
+	$imgData['alt']   = $imgObject->alt;
+	$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgObject->imgAbsPath);
 
-		if ($thumbnails['active'])
+	if ($thumbnails['active'])
+	{
+		PlgFieldsJtgalleryHelper::createThumbnail($imgObject);
+		$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgObject->thumbnails['thumbAbsPath']);
+
+		$imgData['attribs']['width'] = (int) $thumbnails['width'];
+		$imgData['attribs']['height'] = (int) $thumbnails['height'];
+	}
+
+	if (!empty($captionOverlay))
+	{
+		$imgData['caption_overlay'] = $imgObject->caption_overlay;
+
+		if (!in_array($frwk , array('bs2', 'bs3'), true))
 		{
-			PlgFieldsJtgalleryHelper::createThumbnail($imgObject);
-			$imgData['thumb'] = Uri::base(true) . str_replace(JPATH_SITE, '', $imgObject->thumbnails['thumbAbsPath']);
+			$sublayout = $captionOverlay;
 		}
+	}
 
-		if (!empty($imgObject->caption_overlay))
-		{
-			$linkAttr['data-caption']   = htmlentities($imgObject->caption_overlay);
-			$imgData['caption_overlay'] = $imgObject->caption_overlay;
+	$img = $this->sublayout($sublayout, $imgData);
 
-			if ($imageLayout != '0')
-			{
-				$sublayout = $imageLayout;
-			}
-		}
-		else
-		{
-			$linkAttr['data-caption'] = $imgData['alt'];
-		}
-
-		$img = $this->sublayout($sublayout, $imgData);
-
-		echo HTMLHelper::_('link', $imgObject->url, $img, $linkAttr); ?>
+	echo HTMLHelper::_('link', $imgObject->url, $img, $linkAttr); ?>
 	</<?php echo $imgContainer; ?>>
-	<?php $imgCounter++ ?>
-<?php endforeach; ?>
+	<?php $imgCounter++;
+endforeach;

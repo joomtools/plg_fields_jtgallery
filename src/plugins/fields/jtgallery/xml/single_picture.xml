@@ -14,6 +14,7 @@
 
 	<field name="picture_caption_overlay"
 	       type="editor"
+	       height="250"
 	       label="JTGALLERY_PARAMS_CAPTION_OVERLAY_LABEL"
 	       description="JTGALLERY_SINGLE_PICTURE_CAPTION_OVERLAY_DESC"
 	       filter="safehtml"
