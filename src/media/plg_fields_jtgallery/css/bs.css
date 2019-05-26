@@ -1,0 +1,18 @@
+.show-grid [class*="span"],
+.show-grid [class*="col-"] {
+	margin-bottom: 1em;
+}
+
+.no-gutters {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+.no-gutters [class*="span"],
+.no-gutters [class*="col-"] {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-bottom: 0 !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
