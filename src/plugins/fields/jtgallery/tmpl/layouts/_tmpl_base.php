@@ -41,7 +41,14 @@ $imgCounter = 1;
 
 	<<?php echo $imgContainer; ?> class="<?php echo $imgWidth; ?>">
 	<?php
-	$imgObject                = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
+
+	$imgObject = PlgFieldsJtgalleryHelper::getImgObject($imagesPath, $image);
+
+	if (empty($imgObject->fileName))
+	{
+		continue;
+	}
+
 	$imgObject->thumbnails    = $thumbnails;
 	$linkAttr['data-caption'] = htmlentities($imgObject->caption_overlay);
 
