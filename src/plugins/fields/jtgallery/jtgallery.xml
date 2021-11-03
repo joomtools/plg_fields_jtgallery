@@ -6,7 +6,7 @@
 	<copyright>(c) JoomTools. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
 	<authorEmail>info@webnet-assmann.de</authorEmail>
-	<authorUrl>https://github.com/JoomTools/plg_fields_jtgallery</authorUrl>
+	<authorUrl>https://github.com/joomtools/plg_fields_jtgallery</authorUrl>
 	<version>##VERSION##</version>
 	<description>JTGALLERY_XML_DESC</description>
 	<files>
@@ -32,6 +32,6 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" priority="1" name="JTGALLERY_XML_NAME">https://raw.githubusercontent.com/JoomTools/plg_fields_jtgallery/master/update.xml</server>
+		<server type="extension" priority="1" name="JTGALLERY_XML_NAME">https://raw.githubusercontent.com/joomtools/plg_fields_jtgallery/master/update.xml</server>
 	</updateservers>
 </extension>
