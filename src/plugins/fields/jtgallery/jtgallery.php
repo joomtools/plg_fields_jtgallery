@@ -19,6 +19,11 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
+if (version_compare(JVERSION, 4, 'ge'))
+{
+	\JLoader::registerAlias('FieldsHelper', '\\Joomla\\Component\\Fields\\Administrator\\Helper\\FieldsHelper');
+}
+
 JLoader::import('components.com_fields.libraries.fieldsplugin', JPATH_ADMINISTRATOR);
 JLoader::register('PlgFieldsJtgalleryHelper', __DIR__ . '/helper.php');
 
